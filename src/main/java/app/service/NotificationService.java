@@ -1,5 +1,6 @@
 package app.service;
 
+import app.exception.NotificationException;
 import app.model.Notification;
 import app.repository.NotificationRepository;
 import app.web.dto.SendEmailRequest;
@@ -128,7 +129,7 @@ public class NotificationService {
     }
 
     public Notification getById(UUID id) {
-        return notificationRepository.findById(id).orElseThrow(()->new RuntimeException("Could not find notification with id: " + id));
+        return notificationRepository.findById(id).orElseThrow(()->new NotificationException("Could not find notification with id: " + id));
     }
 
     public void deleteNotificationById(UUID id) {
